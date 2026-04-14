@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mergington High School Activities</title>
+
     <link rel="stylesheet" href="styles.css" />
     <link
       rel="icon"
@@ -23,10 +24,15 @@
           </button>
           <div id="user-info" class="hidden">
             <span id="display-name"></span>
+            <button id="manage-announcements-button" class="outline-button">Announcements</button>
             <button id="logout-button">Logout</button>
           </div>
         </div>
       </div>
+      <section id="announcement-banner" class="hidden">
+        <div class="announcement-badge">School Bulletin</div>
+        <div id="announcement-message"></div>
+      </section>
     </header>
 
     <main>
@@ -131,6 +137,48 @@
           <button type="submit">Login</button>
         </form>
         <div id="login-message" class="hidden message"></div>
+      </div>
+    </div>
+
+    <!-- Announcement Management Modal -->
+    <div id="announcements-modal" class="modal hidden">
+      <div class="modal-content announcements-modal-content">
+        <span class="close-announcements-modal">&times;</span>
+        <h3>Manage Announcements</h3>
+        <p class="modal-subtitle">Create, edit, and schedule school messages.</p>
+        <div id="announcements-modal-message" class="hidden message"></div>
+        <form id="announcement-form" class="announcement-form">
+          <input type="hidden" id="announcement-id" value="" />
+          <div class="form-group">
+            <label for="announcement-message-input">Message</label>
+            <textarea
+              id="announcement-message-input"
+              rows="3"
+              maxlength="280"
+              required
+              placeholder="Write an announcement for students and families..."
+            ></textarea>
+          </div>
+          <div class="announcement-date-grid">
+            <div class="form-group">
+              <label for="announcement-start-date">Start date (optional)</label>
+              <input type="date" id="announcement-start-date" />
+            </div>
+            <div class="form-group">
+              <label for="announcement-expiry-date">Expiration date</label>
+              <input type="date" id="announcement-expiry-date" required />
+            </div>
+          </div>
+          <div class="announcement-form-actions">
+            <button type="button" id="announcement-cancel-edit" class="ghost-button">Cancel edit</button>
+            <button type="submit" id="announcement-submit-button">Save announcement</button>
+          </div>
+        </form>
+
+        <div class="announcement-list-header">
+          <h4>Existing announcements</h4>
+        </div>
+        <ul id="announcements-list" class="announcements-list"></ul>
       </div>
     </div>
 
